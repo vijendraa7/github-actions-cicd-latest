@@ -1,0 +1,38 @@
+# This is the name of workflow that will be displayed in the Actions Tab
+name: CICD
+
+# Manual click workflow whenever user needs
+on:
+  workflow_dispatch:
+    
+jobs:
+  code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        # Uses the official action to actually clone your repository code
+        uses: actions/checkout@v4
+
+  build:
+    runs-on: ubuntu-latest
+    # Added 'needs' so build waits for the code job to finish
+    needs: code
+    steps:
+      - name: Build Docker Container
+        run: echo "Docker Container build"
+
+  test:
+    runs-on: ubuntu-latest
+    # Added 'needs' so test waits for the build job to finish
+    needs: build
+    steps: 
+      - name: Test the container
+        run: echo "Testing the container"
+      
+  deploy:
+    runs-on: ubuntu-latest
+    # Added 'needs' so deployment only happens if tests pass
+    needs: test
+    steps:
+      - name: Deploying the app
+        run: echo "Docker compose deployed the app"
