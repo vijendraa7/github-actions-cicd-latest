@@ -11,8 +11,16 @@ jobs:
     steps:
       - name: say hello to users
         run: echo "hello dosto"
- details:
+        
+      - name: say hello to username
+        # Changed $USER to ${{ github.actor }} to show the real GitHub username
+        run: echo "Hello ${{ github.actor }}"    
+
+  details:
     runs-on: ubuntu-latest
     steps:
       - name: show what is the version of python, docker, etc
-        run: docker --version && python --version
+        # Split into separate lines for cleaner, easier-to-read logs
+        run: |
+          docker --version
+          python3 --version
