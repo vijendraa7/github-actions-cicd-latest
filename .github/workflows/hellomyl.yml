@@ -3,7 +3,7 @@
 3  
 4  # runs on a trigger
 5  on:
-6    push:
+6    workflow_dispatch:
 7      branches: [main]
 8  
 9  # these are inside the workflow
