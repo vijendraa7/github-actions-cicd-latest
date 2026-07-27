@@ -1,12 +1,13 @@
----
 name: Hello
-on: null
-push: null
-branches:
-  - main
-jobs: null
-greet: null
-runs-on: ubuntu-latest
-steps:
-  - name: say hello to users
-    run: echo "hello dosto"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: say hello to users
+        run: echo "hello dosto"
