@@ -30,9 +30,10 @@ jobs:
         run: echo "Testing the container"
       
   deploy:
+    
     runs-on: ubuntu-latest
     # Added 'needs' so deployment only happens if tests pass
-    needs: test
+    needs: [build,test]
     steps:
       - name: Deploying the app
         run: echo "Docker compose deployed the app"
