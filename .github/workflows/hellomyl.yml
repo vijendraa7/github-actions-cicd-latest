@@ -16,7 +16,13 @@
 16     steps:
 17       - name: say hello to users
 18         run: echo "Hello Devs"
-19 
+19  
+     details:    
+       runs-on: ubuntu-latest
+       steps:
+         - name:  show what is the version of python,docker,etc
+           run: docker --version $$ python --version
+     
 20       - name: say hello to username
 21         run: echo "Hello $USER"
 22
