@@ -5,8 +5,9 @@ on:
     branches:
       - main
     paths:
-       - '**.html'
-       - '**.yml'
+       - '**.html' # Only trigger when HTML files change
+  workflow_dispatch: # Adds a button in GitHub to run this manually anytime
+
 jobs:
   greet:
     runs-on: ubuntu-latest
@@ -15,14 +16,12 @@ jobs:
         run: echo "hello dosto"
         
       - name: say hello to username
-        # Changed $USER to ${{ github.actor }} to show the real GitHub username
         run: echo "Hello ${{ github.actor }}"    
 
   details:
     runs-on: ubuntu-latest
     steps:
       - name: show what is the version of python, docker, etc
-        # Split into separate lines for cleaner, easier-to-read logs
         run: |
           docker --version
           python3 --version
