@@ -1,13 +1,13 @@
 from flask import Flask, render_template
+
 app = Flask(_name_)
 
 
-@app.route('/')
+@app.route("/")
 def hello_world():
-    return render_template('index.html')
+    return render_template("index.html")
 
 
-@app.route('/health')
+@app.route("/health")
 def health():
-    return 'Server is up and running'
-
+    return "Server is up and running"
