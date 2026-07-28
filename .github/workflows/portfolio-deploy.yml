@@ -32,7 +32,8 @@ permissions:
             # STEP 3
             name: Upload static files
             uses: actions/upload-pages-artifact@v3
-            
+            with:
+              path: "."
             # Makes pages live
             # STEP 4
             name: Deploy to GitHub Pages
