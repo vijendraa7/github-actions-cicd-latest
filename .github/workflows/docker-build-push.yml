@@ -19,12 +19,22 @@ jobs:
           username: ${{ vars.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build & Push to Docker Hub
-        uses: docker/build-push-action@v6
+      - name: Extract Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+         images: vijendraa/github-actions-app
+    # This automatically converts 'refs/heads/main' into just 'main' and adds 'latest'
+         tags: |
+          type=ref,event=branch
+          type=raw,value=latest
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
         with:
           context: .
           push: true
-          tags: |
-             ${{ vars.DOCKERHUB_USER }}/github-actions-app:${{ github.ref }}
-             ${{ vars.DOCKERHUB_USER }}/github-actions-app:latest
-             ${{ vars.DOCKERHUB_USER }}/github-actions-app:${{ github.sha }}
+
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+    
