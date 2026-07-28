@@ -4,8 +4,9 @@ on:
   push:  
     branches:
       - main
-  paths:
-    - '**.html'
+    paths:
+       - '**.html'
+       - '**.yml'
 jobs:
   greet:
     runs-on: ubuntu-latest
