@@ -25,15 +25,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         
-      # STEP 2: Setup github pages
+      # STEP 2: Setup github pages (with automatic enablement)
       - name: Set up GitHub Pages
         uses: actions/configure-pages@v5 
+        with:
+          enablement: true # This explicitly fixes the "Not Found" configuration error
         
       # STEP 3: Upload Static Code Artifact
       - name: Upload static files
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "." # Uploads index.html from the root folder
+          path: "." 
 
       # STEP 4: Makes pages live
       - name: Deploy to GitHub Pages
